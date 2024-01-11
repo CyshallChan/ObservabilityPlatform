@@ -15,7 +15,7 @@ defaults:
 
 env:
   TZ: Asia/Shanghai
-  REPO: "artifact.onwalk.net"
+  REPO: "k3s-gcp.cyshall.com"
   IMAGE: base/${{ github.repository }} 
   TAG: ${{ github.sha }}
   DNS_AK: ${{ secrets.DNS_AK }}

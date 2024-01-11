@@ -14,7 +14,7 @@ kubectl create secret tls observable-server-tls --cert=your.domain.pem --key=you
 
 cat > values.yaml << EOF
 global:
-  domain: onwalk.net
+  domain: cyshall.com
   namespace: monitoring
   secretName: observable-server-tls
 deepflow:
@@ -34,11 +34,11 @@ deepflow:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - grafana.onwalk.net
+        - grafana.cyshall.com
       tls:
         - secretName: observable-server-tls
           hosts:
-            - grafana.onwalk.net
+            - grafana.cyshall.com
   global:
     externalClickHouse:
       enabled: true
@@ -105,7 +105,7 @@ alertmanager:
       repeat_interval: 1h
 EOF
 
-helm repo add stable https://artifact.onwalk.net/chartrepo/public/
+helm repo add stable https://k3s-gcp.cyshall.com/chartrepo/public/
 helm repo update
 helm upgrade --install observable-server stable/observableserver -n monitoring -f values.yaml 
 ```

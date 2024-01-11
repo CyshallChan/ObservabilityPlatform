@@ -6,13 +6,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: clickhouse.onwalk.net
-    http:
-      paths:
-      - backend:
-          service:
-            name: clickhouse-service
-            port:
-              number: 8123
-        path: /
-        pathType: Prefix
+    - host: clickhouse.cyshall.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: clickhouse-service
+                port:
+                  number: 8123
+            path: /
+            pathType: Prefix

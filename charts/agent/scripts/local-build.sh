@@ -15,7 +15,7 @@ helm repo add fluent https://fluent.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo add deepflow https://deepflowys.github.io/deepflow
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-echo "$HELM_REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://artifact.onwalk.net/chartrepo/k8s/
+echo "$HELM_REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://k3s-gcp.cyshall.com/chartrepo/k8s/
 helm repo up
 
 # clone repo && sync upstream charts 

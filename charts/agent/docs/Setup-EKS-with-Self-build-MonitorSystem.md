@@ -39,20 +39,20 @@ prometheus:
     - enable-feature=expand-external-labels
     remoteWrite:
     - name: remote_prometheus
-      url: 'https://prometheus.onwalk.net/api/v1/write'
+      url: 'https://prometheus.cyshall.com/api/v1/write'
   alertmanager:
     enabled: false
   prometheus-pushgateway:
     enabled: false
   kube-state-metrics:
     image:
-      repository: artifact.onwalk.net/k8s/kube-state-metrics
+      repository: k3s-gcp.cyshall.com/k8s/kube-state-metrics
       tag: v2.7.0
 fluent-bit:
   enabled: true
   logLevel: debug
   image:
-    repository: artifact.onwalk.net/k8s/fluent-bit
+    repository: k3s-gcp.cyshall.com/k8s/fluent-bit
     tag: "2.0.8"
     pullPolicy: Always
   config:
@@ -60,13 +60,13 @@ fluent-bit:
       [OUTPUT]
           Name        loki
           Match kube.*
-          Host        loki.onwalk.net
+          Host        loki.cyshall.com
           port        443
           tls         on
           tls.verify  on
 EOF
 
-helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/
+helm repo add stable https://k3s-gcp.cyshall.com/chartrepo/k8s/
 helm repo update
 helm upgrade --install observableagent stable/observableagent -n monitoring --create-namespace -f values.yaml
 ```

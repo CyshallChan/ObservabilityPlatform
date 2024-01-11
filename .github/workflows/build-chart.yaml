@@ -28,7 +28,7 @@ jobs:
       working-directory: charts/app
       shell: bash
       run: |
-        helm repo add sync https://charts.onwalk.net
+        helm repo add sync http://k3s-gcp.cyshall.com:8080
         helm repo up
         helm cm-push -u admin -p "${{ secrets.HELM_REPO_PASSWORD }}" --force ./ sync
         ls -l

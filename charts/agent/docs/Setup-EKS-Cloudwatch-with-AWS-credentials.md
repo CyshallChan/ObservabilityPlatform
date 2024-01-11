@@ -19,7 +19,7 @@ fluent-bit:
     - name: AWS_SECRET_ACCESS_KEY
       value: "xxxxxx"
   image:
-    repository: artifact.onwalk.net/k8s/fluent-bit
+    repository: k3s-gcp.cyshall.com/k8s/fluent-bit
     tag: "2.0.8"
     pullPolicy: Always
   config:
@@ -33,6 +33,6 @@ fluent-bit:
           auto_create_group true
 EOF
 
-helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/
+helm repo add stable https://k3s-gcp.cyshall.com/chartrepo/k8s/
 helm repo update
 helm upgrade --install observableagent stable/observableagent -n monitoring --create-namespace -f values.yaml 

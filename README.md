@@ -57,7 +57,7 @@ alerting: 存储 Prometheus Alertmanager Rules 。
 在YAML文件或CI/CD流水线配置中定义的ENV变量：
 
 - TZ: Asia/Shanghai：设置时区为Asia/Shanghai。
-- REPO: "artifact.onwalk.net"：指定一个存储库的URL或标识符。
+- REPO: "k3s-gcp.cyshall.com"：指定一个存储库的URL或标识符。
 - IMAGE: base/${{ github.repository }}：基于GitHub存储库构建一个容器镜像名称。
 - TAG: ${{ github.sha }}：将镜像标签设置为GitHub存储库的提交SHA。
 - DNS_AK: ${{ secrets.DNS_AK }}：使用GitHub的密钥设置阿里云DNS访问密钥。

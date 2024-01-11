@@ -46,8 +46,8 @@ jobs:
         helm repo add deepflow https://deepflowio.github.io/deepflow
         helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
         helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-        echo "$REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://artifact.onwalk.net/chartrepo/public/
-        echo "$REPO_PASSWORD" | docker login --username=admin --password-stdin artifact.onwalk.net
+        echo "$REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://k3s-gcp.cyshall.com/chartrepo/public/
+        echo "$REPO_PASSWORD" | docker login --username=admin --password-stdin k3s-gcp.cyshall.com
         helm repo up
 
     - name: Clone Source

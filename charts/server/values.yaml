@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 global:
-  domain: onwalk.net
+  domain: cyshall.com
   namespace: monitoring
   secretName: observable-server-tls
 deepflow:
@@ -14,11 +14,11 @@ deepflow:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - grafana.onwalk.net
+        - grafana.cyshall.com
       tls:
         - secretName: observable-server-tls
           hosts:
-            - grafana.onwalk.net
+            - grafana.cyshall.com
 neo4j:
   enabled: true
   neo4j:
@@ -37,19 +37,19 @@ prometheus:
   server:
     remote_write:
       - name: remote_prometheus
-        url: https://data-gateway.svc.plus/api/v1/write
+        url: https://data-gateway.cyshall.com/api/v1/write
     ingress:
       ingressClassName: nginx
       hosts:
-        - prometheus.onwalk.net
+        - prometheus.cyshall.com
       tls:
         - secretName: observable-server-tls
           hosts:
-            - prometheus.onwalk.net
+            - prometheus.cyshall.com
     alertmanagers:
-    - static_configs:
-      - targets:
-        - alertmanager.onwalk.net
+      - static_configs:
+          - targets:
+              - alertmanager.cyshall.com
   serverFiles:
     prometheus.yml:
       rule_files:
@@ -61,11 +61,11 @@ alertmanger:
     enabled: true
     className: "nginx"
     hosts:
-      - host: alertmanager.onwalk.net
+      - host: alertmanager.cyshall.com
     tls:
-       - secretName: observable-server-tls
-         hosts:
-           - alertmanager.onwalk.net
+      - secretName: observable-server-tls
+        hosts:
+          - alertmanager.cyshall.com
 
 imagePullSecrets: []
 nameOverride: ""
@@ -82,10 +82,12 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -100,7 +102,8 @@ service:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -113,7 +116,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following

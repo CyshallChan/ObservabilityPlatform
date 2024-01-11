@@ -14,7 +14,7 @@ kubectl create secret tls observable-server-tls --cert=your.domain.pem --key=you
 
 cat > values.yaml << EOF
 global:
-  domain: onwalk.net
+  domain: cyshall.com
   namespace: monitoring
   secretName: observable-server-tls
 deepflow:
@@ -25,15 +25,15 @@ deepflow:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - grafana.onwalk.net
+        - grafana.cyshall.com
       tls:
         - secretName: observable-server-tls
           hosts:
-            - grafana.onwalk.net
+            - grafana.cyshall.com
 prometheus:
   kube-state-metrics:
     image:
-      repository: artifact.onwalk.net/k8s/kube-state-metrics
+      repository: k3s-gcp.cyshall.com/k8s/kube-state-metrics
       tag: v2.7.0
   server:
     nodeSelector:
@@ -41,15 +41,15 @@ prometheus:
     ingress:
       ingressClassName: nginx
       hosts:
-        - prometheus.onwalk.net
+        - prometheus.cyshall.com
       tls:
         - secretName: observable-server-tls
           hosts:
-            - prometheus.onwalk.net
+            - prometheus.cyshall.com
     alertmanagers:
     - static_configs:
       - targets:
-        - alertmanager.onwalk.net
+        - alertmanager.cyshall.com
   serverFiles:
     prometheus.yml:
       rule_files:
@@ -75,11 +75,11 @@ alertmanager:
     enabled: true
     className: "nginx"
     hosts:
-      - host: alertmanager.onwalk.net
+      - host: alertmanager.cyshall.com
     tls:
        - secretName: observable-server-tls
          hosts:
-           - alertmanager.onwalk.net
+           - alertmanager.cyshall.com
   configmapReload:
     enabled: false
   config:
@@ -107,7 +107,7 @@ alertmanager:
       repeat_interval: 1h
 EOF
 
-helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/
+helm repo add stable https://k3s-gcp.cyshall.com/chartrepo/k8s/
 helm repo update
 helm upgrade --install observable-server stable/observableserver -n monitoring -f values.yaml 
 ```
